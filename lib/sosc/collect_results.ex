@@ -3,7 +3,7 @@ defmodule Sosc.CollectResults do
 
   @me CollectResults
 
-  # api
+
 
   def start_link(worker_count) do
     GenServer.start_link(__MODULE__, worker_count, name: @me)
@@ -17,7 +17,7 @@ defmodule Sosc.CollectResults do
     GenServer.cast(@me, { :result, start, valid })
   end
 
-  # server
+
 
   def init(worker_count) do
     Process.send_after(self(), :kickoff, 0)
@@ -45,8 +45,11 @@ defmodule Sosc.CollectResults do
   end
 
   def report_results() do
-    IO.puts "Results:\n"
-    Sosc.Results.sort
-    |> Enum.each(&IO.inspect/1)
+    #IO.puts "Results:\n"
+    res= Sosc.Results.sort()
+    case length(res) do
+      0 -> IO.puts("No such sequence found.")
+      _ -> res |> Enum.each(&IO.inspect/1)
+    end
   end
 end

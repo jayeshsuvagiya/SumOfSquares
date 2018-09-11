@@ -45,7 +45,7 @@ defmodule Sosc.Application do
   Actual implementation of algorithm.
   """
   def process({n, k}) do
-    IO.puts("#{n} , #{k}")
+    #IO.puts("#{n} , #{k}")
     # List all child processes to be supervised
     children = [
       # Starts a worker by calling: Sosc.Worker.start_link(arg)
@@ -53,7 +53,7 @@ defmodule Sosc.Application do
       Sosc.Results,
       { Sosc.Sd,{n,k} },
       Sosc.WorkerSupervisor,
-      {Sosc.CollectResults,4}
+      {Sosc.CollectResults,8} #8 is number of workers
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
