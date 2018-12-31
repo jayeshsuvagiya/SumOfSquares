@@ -24,3 +24,4 @@ sosc-*.tar
 .elixir_ls
 .elixir_ls/dialyzer_tmp
 *.beam
+readme.txt
